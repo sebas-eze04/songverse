@@ -7,10 +7,10 @@
        de SongVerse (127.0.0.1). Sin scripts ni estilos incrustados. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https://i.ytimg.com; connect-src 'self' http://127.0.0.1:47321; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>SongVerse · Canciones con portada y letra, y vídeos</title>
-  <meta name="description" content="SongVerse baja canciones en la mejor calidad, con su portada, su letra sincronizada y sus datos, desde tus playlists de Spotify (CSV) o una búsqueda, y vídeos de YouTube. Todo en tu equipo, con su motor local." />
-  <meta name="theme-color" content="#efe6d3" />
-  <meta name="color-scheme" content="light" />
+  <title>SongVerse · Descarga canciones y vídeos de YouTube</title>
+  <meta name="description" content="SongVerse baja canciones en la mejor calidad, con su portada, su letra sincronizada y sus datos, desde tus playlists de Spotify (CSV) o un enlace, y vídeos de YouTube. Todo en tu equipo, con su motor local." />
+  <meta name="theme-color" content="#8d3f0a" />
+  <meta name="color-scheme" content="light dark" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="stylesheet" href="songverse.css" />
   <script src="app.js" defer></script>
@@ -23,47 +23,81 @@
       <a class="brand" href="./" aria-label="SongVerse, inicio">
         <img src="assets/logo.png" alt="" width="32" height="32" />
         <span>SONGVERSE</span>
-        <span class="brand-sub">Descargas</span>
       </a>
       <div class="nav-actions">
-        <span class="engine-pill" id="engine-pill" title="Buscando el motor…"><span class="dot"></span><span id="engine-pill-text">Buscando…</span></span>
-        <a class="btn small" id="engine-btn" href="https://github.com/sebas-eze04/songverse-motor/releases/latest/download/SongVerse-Setup.exe">Descargar motor</a>
+        <label class="lang-wrap" data-i18n-title="lang" title="Idioma">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          <select id="lang" aria-label="Idioma"></select>
+        </label>
+        <button class="icon-btn" id="theme-toggle" type="button" data-i18n-title="theme" title="Modo claro / oscuro" aria-label="Modo claro / oscuro">
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+        <span class="engine-pill" id="engine-pill"><span class="dot"></span><span id="engine-pill-text" data-i18n="pill_search">Buscando…</span></span>
+        <a class="btn small" id="engine-btn" href="https://github.com/sebas-eze04/songverse-motor/releases/latest/download/SongVerse-Setup.exe">Descargar / Habilitar motor</a>
       </div>
     </div>
   </header>
 
   <main id="contenido" class="container dl-main">
+    <section class="dl-hero">
+      <h1 data-i18n="tagline">Descargador de YouTube y Spotify</h1>
+      <p class="lead" data-i18n="sub">Canciones con portada y letra, y vídeos en la mejor calidad. Gratis, sin registro, en tu propio equipo.</p>
+    </section>
 
     <section class="panel dl-engine" id="engine" aria-live="polite">
-      <p class="muted">Buscando el motor…</p>
+      <p class="muted">…</p>
     </section>
 
     <section class="panel dl-video">
       <form id="video-form" class="row-form">
-        <input id="video-url" class="field" type="url" placeholder="Pega la URL de un vídeo de YouTube" autocomplete="off" />
-        <button class="btn" type="submit">Ver opciones</button>
+        <input id="video-url" class="field" type="url" data-i18n-ph="url_ph" placeholder="Pega la URL de un vídeo de YouTube" autocomplete="off" />
+        <button class="btn" type="submit" data-i18n="url_btn">Ver opciones</button>
       </form>
       <div id="video-info"></div>
     </section>
 
     <section class="panel dl-work">
-      <p class="muted">Exporta tu biblioteca de Spotify en <b>exportify.net</b> y suelta aquí los archivos CSV.</p>
+      <p class="muted" data-i18n="csv_text">Exporta tu biblioteca de Spotify en <b>exportify.net</b> y suelta aquí los archivos CSV.</p>
       <label class="drop" id="csv-drop">
         <input id="csv-input" type="file" accept=".csv,text/csv" multiple />
-        <b>Elige o suelta tus CSV</b>
-        <small>Puedes elegir varios a la vez</small>
+        <b data-i18n="csv_drop">Elige o suelta tus CSV</b>
+        <small data-i18n="csv_hint">Puedes elegir varios a la vez</small>
       </label>
       <div id="csv-plan"></div>
     </section>
 
     <section class="panel dl-jobs" id="jobs-panel" hidden>
       <div class="jobs-head">
-        <h2>En tu equipo</h2>
-        <button class="link" type="button" id="jobs-clear">Quitar las terminadas</button>
+        <h2 data-i18n="jobs_title">En tu equipo</h2>
+        <button class="link" type="button" id="jobs-clear" data-i18n="jobs_clear">Quitar las terminadas</button>
       </div>
       <ul id="jobs"></ul>
     </section>
 
+    <section class="info">
+      <h2 data-i18n="how_title">Cómo funciona</h2>
+      <div class="cards">
+        <div class="card"><span class="num">1</span><h3 data-i18n="how_1t">Pega un enlace</h3><p data-i18n="how_1">Un vídeo de YouTube, o tus playlists de Spotify exportadas en CSV.</p></div>
+        <div class="card"><span class="num">2</span><h3 data-i18n="how_2t">Elige el formato</h3><p data-i18n="how_2">MP3 con portada, letra sincronizada y datos, o el vídeo en la calidad que quieras.</p></div>
+        <div class="card"><span class="num">3</span><h3 data-i18n="how_3t">Se guarda en tu equipo</h3><p data-i18n="how_3">El motor descarga en tu carpeta de música o de vídeos. Nada pasa por ningún servidor.</p></div>
+      </div>
+    </section>
+
+    <section class="info">
+      <h2 data-i18n="faq_title">Preguntas frecuentes</h2>
+      <details class="faq"><summary data-i18n="faq_1q">¿Dónde se guardan las descargas?</summary><p data-i18n="faq_1a">En tu carpeta de Música o de Vídeos, dentro de SongVerse.</p></details>
+      <details class="faq"><summary data-i18n="faq_2q">¿Qué es el motor?</summary><p data-i18n="faq_2a">Un programa pequeño para Windows que hace la descarga en tu equipo.</p></details>
+      <details class="faq"><summary data-i18n="faq_3q">¿Cómo descargo en MP3?</summary><p data-i18n="faq_3a">Pega el enlace, marca «Solo el audio (MP3)» y pulsa Descargar.</p></details>
+      <details class="faq"><summary data-i18n="faq_4q">¿Es seguro?</summary><p data-i18n="faq_4a">La página no sube nada a ningún sitio y el motor solo responde a esta página.</p></details>
+    </section>
   </main>
+
+  <footer class="foot">
+    <div class="container">
+      <p>SongVerse · © 2026</p>
+      <p class="muted small" data-i18n="footer">SongVerse no está afiliado a YouTube ni a Spotify. No aloja ni almacena ningún archivo.</p>
+    </div>
+  </footer>
 </body>
 </html>
