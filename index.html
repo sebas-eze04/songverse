@@ -25,54 +25,35 @@
         <span>SONGVERSE</span>
         <span class="brand-sub">Descargas</span>
       </a>
+      <div class="nav-actions">
+        <span class="engine-pill" id="engine-pill" title="Buscando el motor…"><span class="dot"></span><span id="engine-pill-text">Buscando…</span></span>
+        <a class="btn small" id="engine-btn" href="https://github.com/sebas-eze04/songverse-motor/releases/latest/download/SongVerse-Setup.exe">Descargar motor</a>
+      </div>
     </div>
   </header>
 
   <main id="contenido" class="container dl-main">
-    <section class="dl-hero">
-      <h1 class="display">Song<span class="accent">Verse</span></h1>
-      <p class="lead">
-        Canciones en la mejor calidad, con su <b>portada</b>, su <b>letra sincronizada</b> y sus datos, guardadas
-        en tu carpeta de música. Desde tus playlists de Spotify, una búsqueda o un enlace de YouTube.
-      </p>
-    </section>
 
     <section class="panel dl-engine" id="engine" aria-live="polite">
       <p class="muted">Buscando el motor…</p>
     </section>
 
+    <section class="panel dl-video">
+      <form id="video-form" class="row-form">
+        <input id="video-url" class="field" type="url" placeholder="Pega la URL de un vídeo de YouTube" autocomplete="off" />
+        <button class="btn" type="submit">Ver opciones</button>
+      </form>
+      <div id="video-info"></div>
+    </section>
+
     <section class="panel dl-work">
-      <div class="dl-tabs" role="tablist">
-        <button type="button" role="tab" data-tab="csv" aria-selected="true">Spotify (CSV)</button>
-        <button type="button" role="tab" data-tab="song" aria-selected="false">Una canción</button>
-        <button type="button" role="tab" data-tab="video" aria-selected="false">Vídeos de YouTube</button>
-      </div>
-
-      <div data-panel="csv">
-        <p class="muted">Exporta tu biblioteca de Spotify en <b>exportify.net</b> y suelta aquí los archivos CSV.</p>
-        <label class="drop" id="csv-drop">
-          <input id="csv-input" type="file" accept=".csv,text/csv" multiple />
-          <b>Elige o suelta tus CSV</b>
-          <small>Puedes elegir varios a la vez</small>
-        </label>
-        <div id="csv-plan"></div>
-      </div>
-
-      <div data-panel="song" hidden>
-        <form id="song-form" class="row-form">
-          <input id="song-q" class="field" type="search" placeholder="Artista y canción…" autocomplete="off" />
-          <button class="btn" type="submit">Buscar</button>
-        </form>
-        <ul class="results" id="song-results"></ul>
-      </div>
-
-      <div data-panel="video" hidden>
-        <form id="video-form" class="row-form">
-          <input id="video-url" class="field" type="url" placeholder="https://www.youtube.com/watch?v=…" autocomplete="off" />
-          <button class="btn" type="submit">Ver opciones</button>
-        </form>
-        <div id="video-info"></div>
-      </div>
+      <p class="muted">Exporta tu biblioteca de Spotify en <b>exportify.net</b> y suelta aquí los archivos CSV.</p>
+      <label class="drop" id="csv-drop">
+        <input id="csv-input" type="file" accept=".csv,text/csv" multiple />
+        <b>Elige o suelta tus CSV</b>
+        <small>Puedes elegir varios a la vez</small>
+      </label>
+      <div id="csv-plan"></div>
     </section>
 
     <section class="panel dl-jobs" id="jobs-panel" hidden>
