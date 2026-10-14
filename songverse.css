@@ -88,6 +88,8 @@ h1, h2, h3 { font-family: inherit; font-weight: 700; letter-spacing: -0.02em; }
 .engine-pill.on .dot { background: #7fe39a; box-shadow: 0 0 0 4px rgba(127, 227, 154, 0.2); }
 .nav .btn { background: var(--on-primary); color: var(--primary-dark); border-color: transparent; }
 .nav .btn:hover { background: #fff; }
+.nav .btn-ghost { color: var(--nav-fg); border-color: rgba(255, 246, 236, 0.5); background: transparent; white-space: nowrap; }
+.nav .btn-ghost:hover { background: rgba(255, 246, 236, 0.12); }
 .nav .btn.is-on { background: transparent; color: var(--nav-fg); border-color: rgba(255, 246, 236, 0.5); }
 
 /* Contenido */
