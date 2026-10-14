@@ -31,7 +31,7 @@ body {
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 96px 96px;
+  background-size: 180px 180px;
   background-attachment: fixed;
 }
 a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 2px; }
