@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Seguridad: solo este sitio, las miniaturas de YouTube y el motor local
        de SongVerse (127.0.0.1). Sin scripts ni estilos incrustados. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https://i.ytimg.com; connect-src 'self' http://127.0.0.1:47321; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: https://i.ytimg.com; connect-src 'self' http://127.0.0.1:47321; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src https://www.youtube-nocookie.com; worker-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>SongVerse · Descarga canciones y vídeos de YouTube</title>
   <meta name="description" content="SongVerse baja canciones en la mejor calidad, con su portada, su letra sincronizada y sus datos, desde tus playlists de Spotify (CSV) o un enlace, y vídeos de YouTube. Todo en tu equipo, con su motor local." />
@@ -58,6 +58,20 @@
       <div id="video-info"></div>
     </section>
 
+    <section class="panel dl-queue">
+      <h2 class="panel-title" data-i18n="queue_title">Cola de descargas</h2>
+      <p class="muted" data-i18n="queue_text">Pega varias URL de YouTube, una por línea, y se bajan todas seguidas. Si son varias, van a la carpeta «SongVerse descarga» de Descargas.</p>
+      <form id="queue-form" class="queue-form">
+        <textarea id="queue-urls" class="field" rows="4" data-i18n-ph="queue_ph" placeholder="https://www.youtube.com/watch?v=…"></textarea>
+        <div class="queue-controls">
+          <select id="queue-format" class="field" aria-label="Formato"><option value="mp3">MP3</option><option value="mp4">MP4</option></select>
+          <select id="queue-quality" class="field" aria-label="Calidad"></select>
+          <button class="btn" type="submit" id="queue-add" data-i18n="add">Añadir a la cola</button>
+        </div>
+      </form>
+      <ul id="queue-out" class="q-items"></ul>
+    </section>
+
     <section class="panel dl-work">
       <p class="muted" data-i18n="csv_text">Exporta tu biblioteca de Spotify en <b>exportify.net</b> y suelta aquí los archivos CSV.</p>
       <label class="drop" id="csv-drop">
@@ -73,6 +87,7 @@
         <h2 data-i18n="jobs_title">En tu equipo</h2>
         <button class="link" type="button" id="jobs-clear" data-i18n="jobs_clear">Quitar las terminadas</button>
       </div>
+      <div class="jobs-summary" id="jobs-summary" hidden></div>
       <ul id="jobs"></ul>
     </section>
 
